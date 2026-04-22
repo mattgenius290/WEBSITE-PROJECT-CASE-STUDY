@@ -1,0 +1,625 @@
+/* =========================================================== */
+/* COMPACT FILTER TOOLBAR STYLES (Desktop & Tablet Base) */
+/* =========================================================== */
+
+/* 1. MAIN CONTAINER */
+.filter-toolbar {
+    background-color: #0f1114; /* Standard Dark Background */
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 10px 30px 30px 30px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    
+    max-width: 1400px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.filter-toolbar.active {
+    display: flex;
+}
+
+/* 2. ROW LAYOUT */
+.filter-row-main {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;     
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+/* 3. DROPDOWN COMPONENT */
+.filter-dropdown {
+    position: relative;
+    flex: 0 0 150px; /* Fixed size */
+    width: 150px;    
+}
+
+.dropdown-btn {
+    width: 100%;
+    background-color: #1c1f26;
+    border: 1px solid #2a2d34;
+    border-radius: 4px;
+    padding: 8px 12px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    height: 38px; /* Fixed height ensures alignment */
+}
+
+.dropdown-btn:hover {
+    background-color: #252a33;
+    border-color: #3f4552;
+}
+
+.filter-dropdown.active .dropdown-btn {
+    border-color: #565c69;
+    background-color: #252a33;
+}
+
+.dropdown-btn .btn-label {
+    color: #7a7f8c;
+    margin-right: 6px;
+    white-space: nowrap;
+}
+
+.dropdown-btn .btn-value {
+    color: #ffffff;
+    font-weight: 600;
+    margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95px; 
+}
+
+.dropdown-btn .chevron {
+    color: #ffffff;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.filter-dropdown.active .chevron {
+    transform: rotate(180deg);
+}
+
+
+/* 4. FLOATING MENU (Desktop Popup) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    
+    background-color: #191b21;
+    border: 1px solid #2a2d34;
+    border-radius: 6px;
+    padding: 10px;
+    
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    
+    min-width: 240px; 
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.filter-dropdown.active .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu.menu-wide {
+    width: 600px;
+    max-width: 90vw;
+}
+
+.dropdown-menu.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
+/* 5. ADD CUSTOM TAG GROUP */
+.dropdown-add-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    margin-bottom: 10px;
+    border-bottom: 1px solid #2a2d34;
+    padding-bottom: 10px;
+}
+
+.dropdown-add-group .add-input {
+    flex: 1; 
+    min-width: 0; 
+    background-color: #0f1114;
+    border: 1px solid #2a2d34;
+    color: #fff;
+    padding: 0 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    height: 36px; 
+}
+
+.dropdown-add-group .add-input:focus {
+    border-color: #e45f3a;
+}
+
+.dropdown-add-group .btn-add-tag {
+    background-color: #2a2d34;
+    color: #fff;
+    border: 1px solid #3f4552;
+    width: 36px; 
+    height: 36px;
+    flex: 0 0 36px; 
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; 
+    font-weight: 400; 
+    line-height: 1;
+    padding: 0; 
+    transition: all 0.2s;
+}
+
+.dropdown-add-group .btn-add-tag:hover {
+    background-color: #e45f3a;
+    border-color: #e45f3a;
+    transform: scale(1.05);
+}
+
+/* 6. CHECKBOX GRID & LIST */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.checkbox-list, .radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* --- SHARED LABEL STYLES --- */
+.checkbox-grid label, 
+.checkbox-list label,
+.radio-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a0a0a0;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 8px;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.checkbox-grid label:hover,
+.checkbox-list label:hover,
+.radio-list label:hover {
+    background-color: #2a2d34; 
+    color: #e5e5e5;
+}
+
+/* 7. CUSTOM CHECKBOX DESIGN */
+.checkbox-grid input[type="checkbox"],
+.checkbox-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #2a2d34;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.checkbox-grid input[type="checkbox"]:checked,
+.checkbox-list input[type="checkbox"]:checked {
+    background-color: #e45f3a;
+    border-color: #e45f3a;
+}
+
+.checkbox-grid input[type="checkbox"]::after,
+.checkbox-list input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    opacity: 0;
+}
+
+.checkbox-grid input[type="checkbox"]:checked::after,
+.checkbox-list input[type="checkbox"]:checked::after {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+}
+
+.checkbox-grid label:has(input:checked),
+.checkbox-list label:has(input:checked) {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 8. CUSTOM RADIO DESIGN */
+.radio-list input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #2a2d34;
+    border: 2px solid #2a2d34;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.radio-list input[type="radio"]:checked {
+    border-color: #e45f3a;
+    background-color: transparent;
+}
+
+.radio-list input[type="radio"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: #e45f3a;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
+}
+
+.radio-list input[type="radio"]:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-list label:has(input:checked) {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 9. ACTIONS GROUP */
+.filter-actions-group {
+    margin-left: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0; 
+}
+
+.btn-reset-action {
+    background-color: #2a2d34;
+    color: #a0a0a0;
+    border: 1px solid transparent;
+    padding: 0 16px;
+    height: 38px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-reset-action:hover {
+    background-color: #3f4552;
+    color: #fff;
+}
+
+.btn-filter-action {
+    background-color: #e45f3a;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    height: 38px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.btn-filter-action:hover {
+    background-color: #b83c19;
+}
+
+/* ERROR STATE */
+.dropdown-add-group .add-input.input-error {
+    border-color: #e50914 !important; 
+    background-color: rgba(229, 9, 20, 0.1);
+    animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+}
+.dropdown-add-group .add-input.input-error::placeholder {
+    color: #ff5265;
+    font-weight: 600;
+}
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* =========================================================== */
+/* RESPONSIVE ADJUSTMENTS */
+/* =========================================================== */
+
+/* 1. Large Tablets / Small Laptops (Max Width: 1280px) */
+@media (max-width: 1280px) {
+    .filter-row-main {
+        gap: 8px;
+    }
+    .dropdown-btn {
+        padding: 8px;
+    }
+    .dropdown-btn .btn-value {
+        max-width: 65px; 
+    }
+}
+
+/* 2. Tablets (iPad, etc.) (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .filter-row-main {
+        flex-wrap: nowrap; 
+        gap: 6px; 
+    }
+    .filter-dropdown {
+        flex: 1 1 auto; 
+        width: auto;    
+        min-width: 0;   
+    }
+    .dropdown-btn {
+        padding: 8px 6px; 
+    }
+    .dropdown-btn .btn-value {
+        max-width: 100%; 
+        min-width: 0;
+    }
+    .filter-actions-group {
+        flex-shrink: 0; 
+        width: auto;
+        margin-left: 0;
+    }
+}
+
+/* =========================================================== */
+/* MOBILE RESPONSIVENESS (Max Width: 768px) */
+/* =========================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. FILTER DRAWER CONTAINER (COMPACTED & FIXED VISIBILITY) */
+    .filter-toolbar { 
+        /* Override desktop display:none so transitions work */
+        display: flex !important; 
+        flex-direction: column;
+        
+        position: fixed;
+        /* Moved down to 115px to clear the search bar (65px + 48px + gap) */
+        top: 115px; 
+        left: 15px; 
+        right: 15px;
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        
+        background-color: #121418; 
+        border-radius: 0 0 12px 12px; 
+        border: 1px solid rgba(255, 255, 255, 0.08); 
+        border-top: none; 
+        
+        box-shadow: 
+            0 15px 30px rgba(0,0,0,0.8),
+            0 0 0 1px rgba(0,0,0,0.2);
+        
+        padding: 10px 12px; 
+        max-height: 75vh; 
+        overflow-y: auto;
+        
+        /* High Z-Index to stay above other elements (but below header 9999) */
+        z-index: 995;
+        
+        /* FIX: Removed 'transform' to allow fixed children to position correctly */
+        margin-top: -10px; 
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        
+        transition: margin-top 0.2s ease, opacity 0.2s ease, visibility 0.2s;
+    }
+
+    /* Showing State (Active) */
+    .filter-toolbar.active {
+        margin-top: 0; /* Animate using margin instead of transform */
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* 2. MAIN GRID LAYOUT (TIGHTER) */
+    .filter-row-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px; 
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    /* 3. DROPDOWN BUTTONS (COMPACT) */
+    .filter-dropdown {
+        width: 100%;
+        flex: none;
+    }
+
+    .dropdown-btn {
+        height: 34px; 
+        padding: 0 8px;
+        font-size: 12px; 
+        background-color: #1c1f24; 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #e0e0e0;
+        border-radius: 6px;
+    }
+    
+    .dropdown-btn:hover,
+    .filter-dropdown.active .dropdown-btn {
+        background-color: #252a33;
+        border-color: #e45f3a; 
+        color: #fff;
+    }
+    
+    .dropdown-btn .btn-label {
+        color: #9ca3af; 
+        margin-right: 4px;
+        font-size: 11px;
+    }
+    
+    .dropdown-btn .btn-value {
+        max-width: 80px; 
+    }
+
+    /* 4. FIX FOR "TOO BIG" MENUS (Centered Modal Popup) */
+    .dropdown-menu {
+        position: fixed !important; 
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        
+        width: 85vw; 
+        max-width: 300px; 
+        max-height: 50vh; 
+        
+        background-color: #18191c; 
+        border: 1px solid rgba(255, 255, 255, 0.15); 
+        
+        box-shadow: 
+            0 0 0 100vmax rgba(0,0,0,0.85), /* Dimmer */
+            0 20px 50px rgba(0,0,0,0.8);   /* Shadow */
+        
+        overflow-y: auto; 
+        z-index: 10002 !important; /* Ensure it's above EVERYTHING */
+        
+        border-radius: 12px;
+        padding: 16px; 
+        
+        /* CRITICAL: Disable animation on mobile to prevent transform bugs */
+        animation: none !important;
+    }
+    
+    .dropdown-menu.menu-wide {
+        width: 85vw;
+        max-width: 300px;
+        left: 50% !important; /* Force center */
+        right: auto;
+    }
+    
+    .dropdown-menu::-webkit-scrollbar {
+        width: 4px;
+    }
+    .dropdown-menu::-webkit-scrollbar-thumb {
+        background: #3f4552;
+        border-radius: 4px;
+    }
+
+    /* 5. ACTION BUTTONS (COMPACT) */
+    .filter-actions-group {
+        grid-column: 1 / -1; 
+        display: flex;
+        gap: 8px;
+        margin-top: 10px; 
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        height: auto;
+    }
+
+    .btn-reset-action, 
+    .btn-filter-action {
+        justify-content: center;
+        height: 38px; 
+        font-size: 13px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn-reset-action {
+        flex: 1; 
+        background-color: #22252b;
+        color: #a0a0a0;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-reset-action:active {
+        background-color: #2a2d34;
+        color: #fff;
+    }
+    
+    .btn-filter-action {
+        flex: 2; 
+        background: linear-gradient(135deg, #e45f3a, #c0392b);
+        color: white;
+        border: none;
+        box-shadow: none; 
+    }
+    .btn-filter-action:active {
+        transform: scale(0.98);
+    }
+    
+    /* 6. INTERNAL CHECKBOX GRIDS */
+    .checkbox-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 6px;
+    }
+    
+    .checkbox-grid label,
+    .checkbox-list label {
+        background-color: transparent; 
+        border-radius: 6px;
+        padding: 8px; 
+        font-size: 13px;
+    }
+    
+    .checkbox-grid label:hover,
+    .checkbox-list label:hover {
+        background-color: rgba(255,255,255,0.05);
+    }
+}

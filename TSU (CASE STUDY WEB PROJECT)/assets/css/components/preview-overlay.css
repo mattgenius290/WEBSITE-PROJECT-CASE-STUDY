@@ -1,0 +1,200 @@
+/* =========================================================== */
+/* MOVIE PREVIEW MODAL (Netflix Style) */
+/* =========================================================== */
+
+/* The Background Overlay */
+.preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.preview-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* The Modal Box */
+.preview-container {
+    background-color: #181818;
+    width: 850px;
+    max-width: 95%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.9);
+    margin: auto; /* Centers vertically if height allows */
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close Button */
+.preview-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background: #181818;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.preview-close-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Hero Section (Top Half) */
+.preview-hero {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background-color: #000;
+}
+
+.preview-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Use object-position to focus on top center of poster if needed */
+    object-position: center top; 
+}
+
+.preview-hero-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, #181818, transparent);
+}
+
+.preview-hero-content {
+    position: absolute;
+    bottom: 5%;
+    left: 40px;
+    width: 60%;
+}
+
+.preview-hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 20px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.preview-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-play {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 8px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.btn-play:hover { background-color: rgba(255, 255, 255, 0.75); }
+
+.btn-list {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.btn-list:hover { background-color: rgba(109, 109, 110, 0.4); }
+
+/* Details Body (Bottom Half) */
+.preview-details-body {
+    padding: 20px 40px 40px 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.preview-left-col { flex: 2; }
+.preview-right-col { flex: 1; }
+
+.preview-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.match-score { color: #46d369; }
+.meta-age { 
+    border: 1px solid #808080; 
+    padding: 0 6px; 
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.preview-desc {
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.preview-info-line {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.preview-info-line .label {
+    color: #777;
+}
+.preview-info-line span {
+    color: #ddd;
+}
+
+/* Mobile Responsiveness for Modal */
+@media (max-width: 768px) {
+    .preview-hero { height: 250px; }
+    .preview-details-body { flex-direction: column; padding: 20px; }
+    .preview-hero-content h1 { font-size: 1.5rem; }
+    .latest-updates-footer {
+      display: flex;
+  }
+}

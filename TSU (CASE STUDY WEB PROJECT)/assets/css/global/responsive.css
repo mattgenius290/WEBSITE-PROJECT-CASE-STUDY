@@ -1,0 +1,319 @@
+/* =========================================================== */
+/* TABLET RESPONSIVE STYLES */
+/* =========================================================== */
+
+@media (max-width: 1324px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .trending-board {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .main-column {
+    order: 1;
+  }
+
+  .movie-popup {
+    display: none !important;
+  }
+}
+
+/* =========================================================== */
+/* MOBILE RESPONSIVE STYLES */
+/* =========================================================== */
+
+@media (max-width: 768px) {
+
+    /* --- HEADER & NAVIGATION --- */
+    .site-header {
+        background: #0b1115;
+        padding: 10px 15px;
+        z-index: 9999 !important; 
+        position: fixed;
+        width: 100%;
+    }
+
+    .menu-wrapper {
+        display: none !important; /* Hide the hamburger menu for mobile view */
+        position: relative;
+        z-index: 10000;
+    }
+
+    .menu-wrapper .dropdown-menu {
+        top: 100% !important; 
+        margin-top: 15px;
+        left: 0 !important;
+        
+        background-color: #1a1f24; 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        width: 200px;
+        
+        display: none;
+        opacity: 0;
+        z-index: 10001; 
+    }
+
+    .menu-checkbox:checked ~ .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        animation: mobileFadeIn 0.2s forwards;
+    }
+
+    @keyframes mobileFadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-wrapper .dropdown-menu a {
+        padding: 10px 5px;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .menu-wrapper .dropdown-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .header-right {
+        gap: 15px;
+        display: flex; 
+        align-items: center;
+    }
+
+    .header-icon-btn.desktop-watchlist-btn {
+        display: none;
+    }
+    
+    #login-trigger-btn {
+        order: 1; 
+    }
+    
+    .mobile-search-btn {
+        display: flex;
+        order: 2; 
+    }
+    
+    .header-icon-btn#login-trigger-btn span {
+        display: none;
+    }
+
+    /* --- DISCOVER & MAIN LAYOUT --- */
+    .discover-section .search-bar {
+        display: none;
+    }
+
+    .discover-section {
+        margin-top: -15px;
+    }
+    
+    .main-container {
+        padding: 0 15px 20px 15px;
+        flex-direction: column;
+    }
+    
+    .trending-board {
+        max-width: 100%;
+        order: 2;
+    }
+    
+    .main-column {
+        order: 1;
+    }
+
+    /* --- FEATURED & SLIDER --- */
+    .featured {
+        height: 50vh;
+    }
+
+    .content {
+        top: auto;
+        bottom: 50px; 
+        left: 15px;
+        right: 15px;
+        width: auto;
+        transform: none;
+        padding: 0;
+        height: auto;
+    }
+
+    .content .featured-tags,
+    .content .featured-description,
+    .content .details,
+    .content .bookmark-btn {
+        display: none;
+    }
+
+    .content h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .watch-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+    
+    .detail-btn {
+        display: inline-block;
+    }
+
+    .slider-controls {
+        display: none;
+    }
+
+    .slider-dots-container {
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px;
+        left: auto;
+        right: 20px; 
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        z-index: 20;
+    }
+
+    /* --- CATEGORIES --- */
+    .categories-container {
+      margin-top: 40px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .category-section {
+      margin-bottom: 30px;
+    }
+
+    .category-section .section-header {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .category-section .section-title {
+      font-size: 20px;
+    }
+
+    .category-row {
+      gap: 10px;
+      padding: 0 4px;
+    }
+
+    .category-row .movie-card {
+      width: 110px;
+      border-radius: 6px;
+    }
+
+    .category-row .movie-card .card-image-container {
+      border-radius: 6px;
+    }
+
+    .category-row .movie-card img {
+      border-radius: 6px;
+    }
+
+    .slider-arrow {
+      display: none;
+    }
+
+    .category-row-wrapper::before,
+    .category-row-wrapper::after {
+      display: none;
+    }
+
+    /* =========================================================== */
+    /* FOOTER SECTION (Mobile Improved) */
+    /* =========================================================== */
+    .main-footer {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem; /* Increased gap for better separation */
+    }
+
+    .az-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .az-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px; /* Slightly more space between buttons */
+    }
+    
+    /* IMPROVED MOBILE BUTTONS */
+    .az-btn {
+        background-color: rgba(255, 255, 255, 0.1); /* Visible button background */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ddd;
+        
+        /* Fixed size for uniform "keyboard" look */
+        width: 34px; 
+        height: 34px;
+        padding: 0; /* Remove padding since we set fixed dimensions */
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        border-radius: 8px; /* Softer corners */
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    /* Make the "All" and "0-9" buttons wider to fit text */
+    .az-btn:nth-child(1), 
+    .az-btn:nth-child(2) {
+        width: auto;
+        padding: 0 16px;
+    }
+
+    .az-btn.active {
+        background-color: #e45f3a; /* Orange accent */
+        color: white;
+        border-color: #e45f3a;
+    }
+
+    .footer-requests {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 0.5rem;
+    }
+    
+    .request-link {
+        font-size: 0.95rem;
+        padding: 10px; /* Larger touch area */
+    }
+
+    .footer-info {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .copyright-text p {
+        font-size: 0.8rem;
+        opacity: 0.6;
+        line-height: 1.6;
+    }
+}

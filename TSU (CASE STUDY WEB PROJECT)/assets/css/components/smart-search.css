@@ -1,0 +1,152 @@
+/* =========================================================== */
+/* SMART SEARCH DROPDOWN STYLES (ENHANCED) */
+/* =========================================================== */
+
+/* Wrapper to hold input + dropdown together */
+.search-wrapper-relative {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    margin: 0 8px;
+}
+
+/* The Dropdown Container */
+.search-suggestions-box {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    
+    /* Modern Glassy Background */
+    background-color: rgba(26, 29, 36, 0.95); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Borders & Shadows */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px; /* Bigger rounded corners */
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.6), 
+        0 4px 10px rgba(0, 0, 0, 0.3);
+    
+    z-index: 9999;
+    display: none; 
+    flex-direction: column;
+    
+    /* Internal Spacing for floating look */
+    padding: 8px; 
+    margin-top: 8px; /* Small gap from the search bar */
+    
+    max-height: 450px;
+    overflow-y: auto;
+    
+    /* Smooth entry animation */
+    animation: fadeInUp 0.2s ease-out;
+}
+
+.search-suggestions-box.active {
+    display: flex;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Individual Suggestion Item */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 12px;
+    cursor: pointer;
+    
+    /* Rounded items inside the box */
+    border-radius: 8px; 
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-bottom: 1px solid transparent; /* Placeholder to prevent layout shift */
+}
+
+/* Hover Effect: Highlight and slight slide */
+.suggestion-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Thumbnail Image */
+.suggestion-thumb {
+    width: 48px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 6px; /* Smooth corners */
+    flex-shrink: 0;
+    background-color: #2a2d34;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Text Content */
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.suggestion-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f5f5f5;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.3px;
+}
+
+.suggestion-item:hover .suggestion-title {
+    color: #ffffff; /* Brighter white on hover */
+}
+
+/* Meta Data (Year • Type • Duration) */
+.suggestion-meta {
+    font-size: 12px;
+    font-weight: 500;
+    color: #a0a0a0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: capitalize;
+}
+
+/* The little separator dots */
+.meta-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #e45f3a; /* Your Theme Orange Accent */
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* Scrollbar Customization */
+.search-suggestions-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-suggestions-box::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px 0;
+}
+
+.search-suggestions-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.search-suggestions-box::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}

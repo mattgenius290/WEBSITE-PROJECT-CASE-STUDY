@@ -1,0 +1,70 @@
+/* =========================================================== */
+/* SEARCH BAR STYLING  */
+/* =========================================================== */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #13181e;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%; /* CHANGED: Forces input to fill the entire area */
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5e5e5;
+  font-size: 15px;
+  padding: 8px 10px;
+  margin: 0; /* CHANGED: Removed margin to prevent overflow (moved to wrapper) */
+}
+
+.search-input::placeholder {
+  color: #71717a;
+  opacity: 1;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #71717a;
+  transition: color 0.2s ease;
+}
+
+.search-bar button:hover {
+  color: #ffffff;
+}
+
+.search-bar button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* filter style */
+.filter-btn {
+  gap: 4px; 
+  padding-right: 12px;
+}
+
+.filter-btn span {
+  color: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.filter-btn:hover span {
+  color: #ffffff;
+}

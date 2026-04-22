@@ -1,0 +1,110 @@
+/* =========================================================== */
+/* FOOTER SECTION (Desktop Improved) */
+/* =========================================================== */
+
+.main-footer {
+    background-color: #050505; /* Slightly softer than pure black */
+    color: #999;
+    padding: 60px 0; /* More vertical breathing room */
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator */
+}
+
+/* Wrapper to keep content centered and aligned on big screens */
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* --- A-Z Section --- */
+.footer-az-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.az-header {
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.az-header h3 {
+    font-size: 1.5rem; 
+    margin: 0;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.az-header p {
+    font-size: 0.95rem;
+    color: #666; 
+    margin: 0; 
+    font-weight: 500;
+}
+
+.az-buttons {
+    display: flex;
+    gap: 8px; 
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.az-btn {
+    background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent bg */
+    color: #ccc;
+    border: 1px solid transparent;
+    padding: 8px 0; /* Vertical padding */
+    width: 42px;    /* Fixed width for uniform look */
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem; 
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.az-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.az-btn.active {
+    background-color: #e45f3a; /* Accent Orange */
+    color: #fff;
+    font-weight: 700;
+}
+
+/* --- Disclaimer / Info --- */
+.footer-info {
+    padding-top: 10px; 
+}
+
+.copyright-text p.disclaimer {
+    margin: 0;
+    color: #666; /* Subtler text color for less visual noise */
+    line-height: 1.7; /* Easier to read */
+    font-size: 0.85rem;
+    max-width: 900px; /* Prevents lines from being too long on wide screens */
+}
+
+/* Make the email link stand out */
+.copyright-text a {
+    color: #e45f3a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.copyright-text a:hover {
+    color: #ff8a6a;
+    text-decoration: underline;
+}

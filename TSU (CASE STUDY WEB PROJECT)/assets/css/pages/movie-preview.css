@@ -1,0 +1,1363 @@
+:root {
+    color-scheme: dark;
+    --bg-deep: #ffffff;
+    --bg-card: rgba(243, 254, 254, 0.75);
+    --bg-card-alt: rgba(232, 233, 234, 0.85);
+    --card-pane: #16232b;
+    --card-pane-accent: #1f2f36;
+    --accent: #e50914; /* Netflix Red */
+    --accent-soft: #ff5265;
+    --text-muted: rgba(255, 255, 255, 0.76);
+    --border-subtle: rgba(255, 255, 255, 0.15);
+    /* Fixed double slash in URL path */
+    --content-bg-image: url('../images/backdrops/Category/japanese-anime/ponyo_backdrops.avif');
+    
+    /* Variables for reuse */
+    --modal-bg: #181818; 
+}
+
+* { 
+    box-sizing: border-box; 
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: transparent; /* Fixed: 'none' is invalid for background-color */
+    color: #fff;
+    overflow-x: hidden;
+}
+
+img { 
+    max-width: 100%; 
+    display: block; 
+}
+
+button { 
+    font: inherit; 
+    background: none; 
+    border: none; 
+    color: inherit; 
+    cursor: pointer; 
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background: radial-gradient(130% 100% at 50% -6%, #463043 0%, #1f1723 45%, #0c0b10 100%);
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    z-index: 10;
+}
+
+.hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(180deg, rgba(0,0,0, 0.8) 0%, rgba(0,0,0,0.3) 35%, transparent 90%);
+    z-index: 15;
+    pointer-events: none;
+}
+
+.hero-background-video {
+    position: absolute;
+    inset: -5% -5% auto;
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    filter: blur(35px) brightness(0.6) saturate(1);
+    transform: scale(1.15);
+    z-index: -2;
+}
+
+/* --- HEADER / NAV --- */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 93%;
+    max-width: 1920px;
+    margin: 0 auto;
+    position: absolute;
+    top: 12px; 
+    left: 0; 
+    right: 0;
+    z-index: 20;
+}
+
+/* Updated Logo Styles to match Home Page */
+.logo {
+    font-size: 2.4rem; 
+    font-weight: bold;
+    color: #ff7a00;
+    text-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;           /* Removes default browser margins */
+    line-height: 1;      /* Removes vertical gap */
+    display: flex;       /* Ensures predictable text box behavior */
+    align-items: center; /* Vertically centers text */
+}
+
+.logo span.highlight {
+    color: #38ff94;
+}
+
+.pill-button {
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.pill-button:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* UPDATED: Sign In Button Styling */
+.sign-in {
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px; 
+    background: transparent; 
+    border: 1px solid #ffffff; 
+    color: #ffffff; 
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.sign-in:hover { 
+    background: #b83c19;
+    border-color: #b83c19;
+    color: #ffffff;
+}
+
+/* --- HERO CARD --- */
+.hero-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    margin-top: 120px; /* Adjusted to balance with header */
+}
+
+.hero-media {
+    position: relative;
+    width: 93%; 
+    max-width: 1920px; 
+    height: 90vh; 
+    min-height: 630px;
+    background-color: #000;
+    border-radius: 24px 24px 18px 18px;
+    
+    --curve-width: 49.5%;
+    --curve-depth: 28px;
+    -webkit-mask: radial-gradient(ellipse var(--curve-width) var(--curve-depth) at 50% 100%, transparent 99%, black 100%);
+    mask: radial-gradient(ellipse var(--curve-width) var(--curve-depth) at 50% 100%, transparent 99%, black 100%);
+    
+    border-top: 2px solid rgba(214, 208, 208, 0.6);
+    border-left: 2px solid rgba(255, 255, 255, 0.369);
+    border-right: none; 
+    border-bottom: none;
+    overflow: hidden;
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-video-bg video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.hero-overlay-gradient {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, transparent 25%),
+        linear-gradient(60deg, rgba(0, 0, 0, 0.9) 0%, transparent 40%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 25%),
+        linear-gradient(to top, rgba(205, 205, 205, 0.25) 0%, transparent 15%),
+        radial-gradient(farthest-corner at 0% 100%, rgb(255, 255, 255) 6%, rgba(255, 255, 255, 0.95) 10%, transparent 12%),
+        radial-gradient(farthest-corner at -18% 60%, rgb(0, 0, 0) 6%, rgba(0, 0, 0, 0.45) 30%, transparent 95%);
+    z-index: 1;
+    pointer-events: none;
+    background-blend-mode: multiply;
+}
+
+.hero-info-overlay {
+    padding-bottom: 10px;
+    position: absolute;
+    bottom: 60px; 
+    
+    /* CHANGE THIS VALUE */
+    /* increasing from 60px to 120px moves it right */
+    left: 120px; 
+    
+    width: 500px;
+    z-index: 10;
+    text-align: left;
+}
+
+.hero-title {
+    font-family: 'Luckiest Guy', 'Inter', sans-serif;
+    font-size: 6rem;
+    line-height: 0.9;
+    color: white;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    text-shadow: 2px 4px 12px rgba(0,0,0,0.8);
+}
+
+.hero-cta-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    width: 100%; 
+}
+
+.hero-cta-form input {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 18px 30px; 
+    font-size: 1.1rem;
+    border-radius: 50px; 
+    backdrop-filter: blur(4px);
+    width: 62%;
+    outline: none;
+}
+
+.hero-cta-form input::placeholder { 
+    color: rgba(255, 255, 255, 0.7); 
+}
+
+.btn-watch-now {
+    background-color: #e45f3a;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+    padding: 13px 25px; 
+    border-radius: 50px; 
+    cursor: pointer;
+    width: 62%; 
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.btn-watch-now:hover { 
+    background-color: #b83c19; 
+}
+
+.hero-subtext {
+    margin: 8px 0 25px 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    width: 62%;
+    text-align: center;
+}
+
+.hero-controls-right {
+    position: absolute;
+    bottom: 60px; 
+    right: 60px;
+    display: flex; 
+    gap: 14px;
+    z-index: 10;
+}
+
+.control-circle {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+.control-circle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+    transform: scale(1.05);
+}
+
+.control-circle svg { 
+    width: 24px; 
+    height: 24px; 
+    fill: currentColor; 
+    stroke: currentColor; 
+}
+
+/* =========================================
+   CONTENT SECTIONS
+   ========================================= */
+.content-container {
+    position: relative;
+    padding: 4rem 0 0;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.content-container .main-footer {
+    background: #000000;
+    position: relative;
+    z-index: 2;
+}
+
+.content-container .main-footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-backdrop {
+    position: absolute;
+    inset: -8% -12%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(35px) brightness(0.6) saturate(1);
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+
+.content-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.synopsis-card {
+    margin-top: 70px;
+    padding: 2rem 3rem; 
+    border-radius: 24px; 
+    background: linear-gradient(180deg, rgba(98, 100, 100, 0.6) 0%, rgba(65, 75, 79, 0.75) 100%);
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.synopsis-content { 
+    display: flex; 
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4rem; 
+}
+
+.synopsis-summary { 
+    flex: 1.5; 
+}
+
+.synopsis-title {
+    font-family: 'Inter', 'Helvetica Neue', 'Netflix Sans', Arial, sans-serif;
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: #ffffff;
+}
+
+.synopsis-meta {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+    margin: 0 0 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.synopsis-description {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.12rem;
+    line-height: 1.7;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    max-width: 100%;
+}
+
+.synopsis-divider { 
+    width: 1px; 
+    align-self: stretch; 
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.25) 15%, rgba(255, 255, 255, 0.25) 85%, transparent 100%); 
+}
+
+.synopsis-starring {
+    flex: 1;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.65;
+    letter-spacing: 0.015em;
+    font-weight: 500;
+    padding-top: 0.5rem;
+}
+
+.starring-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.4rem;
+}
+
+.details-section { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    width: 100%; 
+}
+
+.details-heading {
+    font-size: clamp(2.4rem, 3vw, 3rem);
+    margin: 0;
+    font-weight: 800;
+    color: #fdfdfd;
+    letter-spacing: -0.008em;
+}
+
+.details-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.25rem; 
+    align-items: stretch; 
+}
+
+.details-card {
+    padding: 2rem 1.75rem; 
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(98, 100, 100, 0.6) 0%, rgba(65, 75, 79, 0.75) 100%);
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 250px; 
+}
+
+.details-list dt {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', 'Helvetica Neue', 'Netflix Sans', Arial, sans-serif;
+}
+
+.details-list dd {
+    font-family: 'Inter', 'Helvetica Neue', 'Netflix Sans', Arial, sans-serif;
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.5;
+}
+
+.details-list dd:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
+   CAROUSEL & NAVIGATION
+   ========================================= */
+.carousel-section {
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.5rem;
+    position: relative; 
+    margin-bottom: 2rem;
+}
+
+.section-heading h2 { 
+    font-size: clamp(1.9rem, 4vw, 2.7rem); 
+    margin: 0; 
+    font-weight: 700; 
+    letter-spacing: 0.01em; 
+}
+
+/* --- Wrapper --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; 
+}
+
+/* --- Track --- */
+.carousel-track {
+    display: flex; 
+    gap: 12px;
+    overflow-x: auto; 
+    scroll-behavior: smooth;
+    padding: 20px 0; 
+    scrollbar-width: none; 
+}
+
+.carousel-track::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* --- NAVIGATION BUTTONS --- */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 25;
+    width: 46px;
+    height: 116px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(20,28,36,0.55)), rgba(8, 16, 22, 0.55);
+    color: #fff;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carousel-wrapper:hover .nav-btn { 
+    opacity: 0.95; 
+}
+
+.nav-btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.03);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.55);
+}
+
+.nav-btn.left { 
+    left: 16px; 
+}
+
+.nav-btn.right { 
+    right: 16px; 
+}
+
+.nav-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    stroke: none;
+    transition: transform 0.25s ease;
+}
+
+.nav-btn:hover svg { 
+    transform: translateX(1px); 
+}
+
+.nav-btn.left:hover svg { 
+    transform: translateX(-1px); 
+}
+
+.nav-btn.hidden { 
+    display: none !important; 
+}
+
+/* --- Movie Cards --- */
+.carousel-card {
+    flex: 0 0 auto;
+    width: 200px;
+    aspect-ratio: 2 / 3;
+    border-radius: 16px; 
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, z-index 0s 0.3s;
+    background: #222;
+}
+
+.carousel-card img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.carousel-card:hover { 
+    transform: scale(1.05); 
+    z-index: 10; 
+}
+
+/* =========================================
+   CINEMA OVERLAY
+   ========================================= */
+.cinema-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 99999; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(1px); 
+}
+
+.cinema-overlay.active { 
+    opacity: 1; 
+    visibility: visible; 
+}
+
+.cinema-video-wrapper {
+    width: 78vw; 
+    max-width: 1280px; 
+    height: auto; 
+    max-height: 100vh; 
+    aspect-ratio: 16 / 9; 
+    scale: 1.02;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8); 
+    border-radius: 18px; 
+    overflow: hidden;
+    background: #000; 
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+}
+
+.cinema-video-wrapper video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+
+.close-cinema-btn {
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    background: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white; 
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer; 
+    z-index: 100000;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px); 
+}
+
+.close-cinema-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white; 
+    transform: scale(1.1);
+}
+
+/* =========================================
+   TRAILERS SECTION
+   ========================================= */
+.trailers-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.trailers-container { 
+    width: 100%; 
+}
+
+.trailer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.trailer-item { 
+    flex: 0 0 auto; 
+    width: 300px; 
+}
+
+.trailer-card-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+.trailer-card-btn:hover .trailer-image-box { 
+    border-color: #fff; 
+}
+
+.trailer-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.trailer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9); 
+}
+
+.trailer-icon-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+    transition: background 0.2s ease;
+}
+
+.trailer-card-btn:hover .trailer-icon-overlay { 
+    background: rgba(0, 0, 0, 0); 
+}
+
+.icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    color: white;
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.trailer-card-btn:hover .icon-circle {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    border-color: white;
+}
+
+.trailer-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #e5e5e5;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.trailer-type-heading {
+    margin: 0 0 6px 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #a3a3a3;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.trailer-title-wrapper { 
+    width: 100%; 
+}
+
+.trailer-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+}
+
+/* SCROLLBAR STYLE */
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e45f3a; 
+  border-radius: 10px;
+  border: 2px solid #0b0c10; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b83c19; 
+}
+
+
+
+
+/* =========================================
+   RESPONSIVE: MOBILE FIRST HERO LAYOUT
+   ========================================= */
+@media (max-width: 960px) {
+	html, body {
+        max-width: 100%;
+        overflow-x: hidden !important;
+        position: relative;
+    }
+
+    /* --- 1. GLOBAL LAYOUT & BACKGROUND --- */
+    body {
+        background: radial-gradient(140% 120% at 50% 0%, #3d2c3d 0%, #191520 55%, #0b0a0f 100%);
+    }
+
+    .content-container {
+        padding-top: 0 !important;
+        position: relative;
+        z-index: 20;
+        overflow: hidden; /* Stops blur/backdrop from bleeding out */
+    }
+
+    .content-backdrop {
+        opacity: 1;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: none; /* Resets the desktop zoom */
+        filter: blur(60px) brightness(0.65) saturate(1);
+        clip-path: inset(0); 
+        z-index: 0; 
+
+        
+        /* Fades opacity at the top so it blends nicely */
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 300px);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 100px);
+    }
+
+    /* --- 2. HEADER (Relative Positioning) --- */
+    .header-container {
+        position: relative; 
+        top: auto; 
+        left: auto; 
+        right: auto;
+        
+        width: 100%;
+        padding: 20px 24px; 
+        margin-bottom: 10px; /* Space between header and video */
+        gap: 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .sign-in {
+        padding: 0.45rem 1.1rem;
+        font-size: 0.9rem;
+    }
+
+    /* --- 3. HERO SECTION (Video & Title) --- */
+    .hero-container {
+        z-index: 10;
+        min-height: auto !important; /* Prevents full-screen forcing */
+        padding: 0 0 40px !important; /* Reduced bottom gap */
+    }
+
+    .hero-container::before {
+        width: 100%;
+        height: 180px;
+        background: linear-gradient(180deg, rgba(0,0,0, 0.8) 2%, rgba(0,0,0,0.3) 35%, transparent 90%);
+    }
+
+    .hero-media {
+        width: calc(100% - 26px);
+        max-width: none;
+        margin: 0 12px;
+        height: auto;
+        min-height: unset;
+        aspect-ratio: 16 / 9; /* Standard widescreen shape */
+        border-radius: 14px 14px 18px 18px;
+        -webkit-mask: radial-gradient(ellipse 50% 22px at 50% 100%, transparent 99%, black 100%);
+        mask: radial-gradient(ellipse 50% 22px at 50% 100%, transparent 99%, black 100%);
+    }
+
+    .hero-content {
+        margin-top: 0px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-info-overlay {
+        position: static;
+        width: 100%;
+        max-width: 540px;
+        margin: 0px auto 0;
+        padding: 0 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.55rem, 8vw, 1.95rem);
+        line-height: 0.9;
+        margin: 0 0 6px;
+    }
+    
+    .hero-logo {
+        width: 70%;
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 6px;
+    }
+
+    .hero-subtext {
+        width: 100%;
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        margin: 0;
+    }
+
+    .hero-cta-form {
+        width: 100%;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .hero-cta-form input {
+        padding: 12px 16px;
+        font-size: 0.92rem;
+        border-radius: 32px;
+    }
+
+    .btn-watch-now {
+        width: 100%;
+        max-width: 220px;
+        font-size: 1rem;
+        padding: 12px 16px;
+        border-radius: 32px;
+        margin-top: 3px;
+    }
+
+    .hero-controls-right {
+        bottom: 18px;
+        right: auto;
+        left: 18px;
+        gap: 10px;
+    }
+
+    .control-circle {
+        margin-bottom: 24px;
+        width: 38px;
+        height: 38px;
+        background: rgba(20, 20, 20, 0.6);
+    }
+
+    /* --- 4. SYNOPSIS CARD --- */
+    .content-inner {
+        padding: 0 1.2rem;
+    }
+
+    .synopsis-card {
+        margin-top: 0 !important;
+        padding: 1rem 1rem !important;
+        background: linear-gradient(180deg, rgba(98, 100, 100, 0.6) 0%, rgba(65, 75, 79, 0.75) 100%);
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .synopsis-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .synopsis-title {
+        font-size: 1.3rem; 
+        margin-bottom: 0.25rem;
+    }
+
+    .synopsis-meta {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+        color: #b3b3b3;
+    }
+
+    .synopsis-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #e0e0e0;
+        margin-bottom: 0.75rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .synopsis-divider {
+        display: none;
+    }
+
+    .synopsis-starring {
+        font-size: 0.85rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #a0a0a0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .starring-label {
+        display: inline;
+        margin-right: 4px;
+        color: #fff;
+    }
+
+    /* --- 5. COMPACT DETAILS & HEADINGS --- */
+    .details-heading,
+    .section-heading h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .details-card {
+        min-height: auto !important; 
+        padding: 1rem 1.25rem !important;
+        gap: 0.5rem;
+        border-radius: 12px !important;
+    }
+
+    .details-list dt {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .details-list dd {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* --- 6. CAROUSEL & CARDS (FORCED 2-COLUMN GRID) --- */
+    .carousel-section {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Change track from flex slider to grid */
+    .carousel-track {
+        display: grid;
+        /* repeat(2, 1fr) forces 2 columns regardless of width. 
+           minmax(0, 1fr) allows content to shrink below its minimum size */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        gap: 12px;
+        padding: 10px 0;
+        overflow-x: visible; /* Remove horizontal scroll */
+        width: 100%;
+    }
+
+    .carousel-card {
+        width: 100% !important; 
+        min-width: 0 !important; /* Allows card to shrink below 200px */
+        flex: none !important;   /* Disables desktop flex behavior */
+        border-radius: 8px;
+        aspect-ratio: 2/3;
+    }
+
+    /* Hide navigation arrows since it's a grid now */
+    .nav-btn {
+        display: none !important;
+    }
+
+    /* Video Fixes (Background) */
+    #youtube-forced-bg {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        width: 100% !important;
+        height: 100% !important;
+        transform: translate(-50%, -50%) scale(3) !important;
+        filter: blur(0px) brightness(0.4) saturate(1);
+        z-index: -1 !important; 
+    }
+
+    .hero-background-video {
+        overflow: visible;
+    }
+    
+    /* Smooth fade at bottom of video */
+    .hero-background-video::after {
+        content: '';
+        position: absolute;
+        left: -8%;
+        right: -8%;
+        bottom: -440px;
+        height: 20px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.8) 100%);
+        filter: blur(26px);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* --- 7. FOOTER (Centered for Mobile) --- */
+    .main-footer {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem; /* Increased gap for better separation */
+    }
+
+    .az-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .az-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px; /* Slightly more space between buttons */
+    }
+    
+    /* IMPROVED MOBILE BUTTONS */
+    .az-btn {
+        background-color: rgba(255, 255, 255, 0.1); /* Visible button background */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ddd;
+        
+        /* Fixed size for uniform "keyboard" look */
+        width: 34px; 
+        height: 34px;
+        padding: 0; /* Remove padding since we set fixed dimensions */
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        border-radius: 8px; /* Softer corners */
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    /* Make the "All" and "0-9" buttons wider to fit text */
+    .az-btn:nth-child(1), 
+    .az-btn:nth-child(2) {
+        width: auto;
+        padding: 0 16px;
+    }
+
+    .az-btn.active {
+        background-color: #e45f3a; /* Orange accent */
+        color: white;
+        border-color: #e45f3a;
+    }
+
+    .footer-requests {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 0.5rem;
+    }
+    
+    .request-link {
+        font-size: 0.95rem;
+        padding: 10px; /* Larger touch area */
+    }
+
+    .footer-info {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .copyright-text p {
+        font-size: 0.8rem;
+        opacity: 0.6;
+        line-height: 1.6;
+    }
+    
+    /* Make buttons slightly bigger touch targets */
+    .az-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer-requests {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 1.5rem;
+    }
+
+    .footer-info {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .copyright-text p {
+        font-size: 0.8rem;
+        opacity: 0.6;
+    }
+    
+    /* --- 8. TRAILERS (Smaller) --- */
+    .trailers-section {
+        gap: 0.5rem;
+    }
+
+    .trailer-item {
+        /* Reduce width from 300px to 270px/220px */
+        width: 270px !important; 
+    }
+
+    .trailer-title {
+        font-size: 0.9rem;
+    }
+
+    .trailer-type-heading {
+        font-size: 0.75rem;
+    }
+
+    /* --- 9. CINEMA OVERLAY (Fullscreen Player) --- */
+    .cinema-video-wrapper {
+        /* Adjusted width so it doesn't touch the screen edges */
+        width: 94% !important; 
+        max-width: none;
+        
+        /* Remove desktop scale zoom */
+        scale: 1 !important;
+        
+        /* Add a nice border and radius to match the app aesthetic */
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px; 
+        background: #000;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        
+        /* Ensure aspect ratio stays correct */
+        aspect-ratio: 16 / 9;
+    }
+
+    .close-cinema-btn {
+        top: 12px;
+        right: 12px;
+        width: 38px; /* Slightly larger touch target */
+        height: 38px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+    }
+}

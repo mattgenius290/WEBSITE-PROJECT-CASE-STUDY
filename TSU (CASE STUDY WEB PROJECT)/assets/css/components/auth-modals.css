@@ -1,0 +1,356 @@
+/* =========================================================== */
+/* LOGIN MODAL */
+/* =========================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.login-modal {
+  background-color: #1e2127;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.is-visible .login-modal {
+  transform: scale(1);
+}
+
+.login-header {
+  background-color: #2ecc71;
+  padding-top: 25px;
+  padding-bottom: 40px;
+  position: relative;
+  border-radius: 0 0 100% 100% / 120px; /* Creates the curve */
+}
+
+.login-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3;
+}
+.login-close-btn:hover {
+  opacity: 1;
+}
+
+.login-body {
+  padding: 25px;
+  padding-top: 15px;
+}
+
+.login-body h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+  background-color: #2a2d34;
+  border: none; 
+  border-radius: 8px;
+  padding: 14px 16px; 
+  font-size: 0.95rem;
+  color: #e5e5e5;
+  margin-bottom: 18px;
+  transition: box-shadow 0.2s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus,
+.login-form input[type="email"]:focus {
+  outline: none;
+}
+
+.login-submit-btn {
+  background-color: #e45f3a;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.login-submit-btn:hover {
+  background-color: #b83c19;
+  transform: scale(1.02);
+}
+
+.login-footer {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 0.9rem;
+}
+.login-footer p {
+  margin-bottom: 10px;
+  color: #a0a0a0;
+}
+.login-footer a {
+  color: #38ff94;
+  text-decoration: none;
+  font-weight: 500;
+}
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* SIGN UP MODAL */
+.signup-success-box {
+  background-color: #2a2d34;
+  border: 1px solid #2ecc71;
+  padding: 12px 15px;
+  border-radius: 8px;
+  
+  /* CHANGED: Hidden by default, JS will set to 'flex' on success */
+  display: none; 
+  
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.signup-success-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: #fff;
+}
+.signup-success-check {
+  width: 22px;
+  height: 22px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.signup-success-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Specific tweaks for signup modal text */
+.signup-modal .login-footer p {
+    margin-bottom: 0;
+}
+  
+/* FORGOT PASSWORD MODAL */
+.login-footer p {
+  text-align: center;
+}
+
+/* =========================================================== */
+/* LOGOUT CONFIRMATION MODAL */
+/* =========================================================== */
+
+/* 1. Header: Matches the Green Curved style of Sign In/Up */
+.logout-header {
+    background-color: #2ecc71; /* Green brand color */
+    padding-top: 25px;
+    padding-bottom: 40px;
+    position: relative;
+    /* The specific curve formula to match your screenshots */
+    border-radius: 0 0 100% 100% / 120px; 
+}
+
+/* 2. Body Text */
+.logout-body h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.logout-body p {
+    text-align: center;
+    color: #a0a0a0; /* Muted text */
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    padding: 0 20px;
+}
+
+/* 3. Button Layout */
+.logout-btn-group {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logout-btn-group .login-submit-btn {
+    width: 100%;
+    margin: 0;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* 4. Cancel Button (Secondary Action) */
+.btn-cancel {
+    background-color: #2a2d34;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e5e5e5;
+}
+
+.btn-cancel:hover {
+    background-color: #3f4552;
+    border-color: #fff;
+    transform: scale(1.02);
+}
+
+/* 5. Log Out Button (Primary Action - Orange) */
+.btn-confirm {
+    background-color: #e45f3a; /* Your brand orange */
+    border: 1px solid #e45f3a;
+    color: #fff;
+}
+
+.btn-confirm:hover {
+    background-color: #b83c19;
+    transform: scale(1.02);
+}
+/* =========================================================== */
+/* ERROR HANDLING STYLES */
+/* =========================================================== */
+
+/* 1. The Red Error Message Box */
+.login-error-box {
+    background-color: #d93025;
+    border: 1px solid #e50914;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 16px;
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 10px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.login-error-box svg {
+    width: 18px;
+    height: 18px;
+    stroke: #ffffff;
+    flex-shrink: 0;
+}
+
+.login-error-box span {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Add/Update this section in auth-modals.css */
+
+/* 1. The Red Effect on Inputs (Targets id="password" when class is added) */
+.input-error {
+    /* Critical: !important ensures this overrides default input styles */
+    border: 1px solid #e50914 !important; 
+    
+    /* Red Background Tint */
+    background-color: rgba(229, 9, 20, 0.05) !important; 
+    
+    /* Red Text Color */
+    color: #ffb4bb !important; 
+    
+    /* The "Red Glow" Effect */
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.25) !important; 
+    
+    transition: all 0.2s ease;
+}
+
+/* Change placeholder color to red when error is active */
+.input-error::placeholder {
+    color: #e50914; 
+    opacity: 0.8;
+}
+
+/* 2. Shake Animation for the whole modal */
+.shake-animation {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* =========================================================== */
+/* MOBILE RESPONSIVENESS */
+/* =========================================================== */
+@media (max-width: 480px) {
+    /* 1. Constraint Modals to Viewport Width */
+    .login-modal {
+        width: 90% !important; /* Leaves 5% gap on each side */
+        max-width: none;
+        margin: 0 auto; /* Centers horizontally if not using flex */
+    }
+
+    /* 2. Adjust Logout Header Curve */
+    /* The curve needs to be shallower on narrow screens to look correct */
+    .logout-header {
+        border-radius: 0 0 50% 50% / 30px; 
+        padding-bottom: 30px;
+    }
+    
+    /* 3. Adjust Padding for smaller screens */
+    .login-body,
+    .logout-body {
+        padding: 20px 15px;
+    }
+
+    .logout-body p {
+        font-size: 0.95rem;
+        padding: 0 5px;
+    }
+    
+    /* 4. Ensure buttons stack or fit nicely */
+    .logout-btn-group {
+        gap: 10px;
+    }
+}

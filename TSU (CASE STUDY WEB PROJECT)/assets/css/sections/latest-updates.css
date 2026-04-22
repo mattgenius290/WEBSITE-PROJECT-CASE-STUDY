@@ -1,0 +1,685 @@
+/* =========================================================== */
+/* LATEST UPDATES SECTION */
+/* =========================================================== */
+.latest-updates {
+    margin-top: 40px;
+}
+
+/* --- SECTION HEADER & FILTERS --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #2a2d34;
+    padding-bottom: 16px;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    gap: 15px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Important for mobile responsiveness */
+}
+
+.filters {
+    list-style: none;
+    display: flex;
+    gap: 10px; /* Space between pill buttons */
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+/* --- NEW: Filter Pill Button Styles --- */
+.filter-pill {
+    background-color: #1c1f26; /* Dark background */
+    border: 1px solid #2a2d34; /* Subtle border */
+    color: #a0a0a0; /* Muted text color */
+    padding: 8px 18px; /* Larger click area */
+    border-radius: 20px; /* Fully rounded pill shape */
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; /* Prevents text wrapping inside button */
+}
+
+/* Hover Effect */
+.filter-pill:hover {
+    background-color: #2a2d34;
+    color: #ffffff;
+    border-color: #555;
+    transform: translateY(-1px); /* Slight lift */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Active / Selected State */
+.filter-pill.active {
+    background-color: #e45f3a; /* Theme Orange */
+    border-color: #e45f3a;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(228, 95, 58, 0.4); /* Nice Glow */
+}
+
+/* Optional: Icon style if you add SVGs inside buttons later */
+.filter-pill svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+}
+
+/* --- NAVIGATION ARROWS --- */
+.nav-arrows {
+    display: flex;
+    gap: 8px;
+    position: relative; /* Required for tooltip positioning */
+}
+
+.arrow-btn {
+    background-color: #2a2d34;
+    border: none;
+    color: #FFFFFF;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.arrow-btn:hover {
+    background-color: #3f444c;
+}
+
+/* Specific Orange Hover Color */
+.arrow-btn:hover:not(:disabled) {
+    background-color: #b83c19 !important;
+    color: #ffffff;
+    transform: scale(1.05);
+    border-color: #b83c19;
+}
+
+/* Disabled state for first/last page */
+.arrow-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+    background-color: #2a2d34;
+}
+
+/* --- MOVIE GRID & CARDS --- */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px; 
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-image-container {
+    position: relative;
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+
+.card-image-container img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.overlay-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+/* NEW RATING COLOR CLASSES */
+.tag-rated-color {
+    color: #FFFFFF;
+}
+
+.rating-G {
+    background-color: #38a169; /* Green: General Audience */
+}
+
+.rating-PG {
+    background-color: #ff7a00; /* Orange: Parental Guidance */
+}
+
+.rating-MA {
+    background-color: #e50914; /* Red: Mature Audience */
+}
+
+.card-content {
+    padding: 12px 4px 0;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    height: 2.6em;
+    overflow: hidden;
+}
+
+.card-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-ep-count {
+    color: #a0a0a0;
+    padding: 2px 0;
+}
+
+/* === CONTENT ANIMATIONS === */
+@keyframes zoomIn {
+  from { transform: scale(0.95) translateY(-50%); opacity: 0; }
+  to { transform: scale(1) translateY(-50%); opacity: 1; }
+}
+
+@keyframes zoomOut {
+  from { transform: scale(1.05) translateY(-50%); opacity: 0; }
+  to { transform: scale(1) translateY(-50%); opacity: 1; }
+}
+
+.content.zoom-in { animation: zoomIn 0.4s ease-out; }
+.content.zoom-out { animation: zoomOut 0.4s ease-out; }
+
+/* POPUP POSITIONING (Grid) */
+.movie-card .movie-popup {
+  left: 108%;
+  top: 108%;
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.movie-card.is-hovered .movie-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+  transition-delay: 0.2s;
+}
+
+.movie-card.is-hovered .movie-popup.popup-position-left {
+  left: auto;
+  right: 105%;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+}
+
+.movie-card.is-hovered .movie-popup.popup-position-right {
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+}
+
+/* LATEST UPDATES PAGINATION TOOLTIP */
+.nav-arrows::before {
+    content: attr(data-page);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px) scale(0.9);
+    opacity: 0;
+    visibility: hidden;
+    background-color: #ffffff;
+    color: #0b1115;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    pointer-events: none;
+    z-index: 20;
+    margin-bottom: 12px;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-arrows::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ffffff;
+    transform: translateX(-50%) translateY(-5px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 20;
+    margin-bottom: 6px;
+    transition: all 0.25s ease;
+}
+
+.nav-arrows:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.nav-arrows:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================== */
+/* LATEST UPDATES SECTION */
+/* =========================================================== */
+.latest-updates {
+    margin-top: 40px;
+}
+
+/* --- SECTION HEADER & FILTERS --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #2a2d34;
+    padding-bottom: 16px;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    gap: 15px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Important for mobile responsiveness */
+}
+
+.filters {
+    list-style: none;
+    display: flex;
+    gap: 10px; /* Space between pill buttons */
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+/* --- NEW: Filter Pill Button Styles --- */
+.filter-pill {
+    background-color: #1c1f26; /* Dark background */
+    border: 1px solid #2a2d34; /* Subtle border */
+    color: #a0a0a0; /* Muted text color */
+    padding: 8px 18px; /* Larger click area */
+    border-radius: 20px; /* Fully rounded pill shape */
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; /* Prevents text wrapping inside button */
+}
+
+/* Hover Effect */
+.filter-pill:hover {
+    background-color: #2a2d34;
+    color: #ffffff;
+    border-color: #555;
+    transform: translateY(-1px); /* Slight lift */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Active / Selected State */
+.filter-pill.active {
+    background-color: #e45f3a; /* Theme Orange */
+    border-color: #e45f3a;
+    color: #ffffff;
+    box-shadow: none; /* REMOVED GLOW */
+}
+
+/* Optional: Icon style if you add SVGs inside buttons later */
+.filter-pill svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+}
+
+/* --- NAVIGATION ARROWS --- */
+.nav-arrows {
+    display: flex;
+    gap: 8px;
+    position: relative; /* Required for tooltip positioning */
+}
+
+.arrow-btn {
+    background-color: #2a2d34;
+    border: none;
+    color: #FFFFFF;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.arrow-btn:hover {
+    background-color: #3f444c;
+}
+
+/* Specific Orange Hover Color */
+.arrow-btn:hover:not(:disabled) {
+    background-color: #b83c19 !important;
+    color: #ffffff;
+    transform: scale(1.05);
+    border-color: #b83c19;
+}
+
+/* Disabled state for first/last page */
+.arrow-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+    background-color: #2a2d34;
+}
+
+/* --- MOVIE GRID & CARDS --- */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px; 
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-image-container {
+    position: relative;
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+
+.card-image-container img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.overlay-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+/* NEW RATING COLOR CLASSES */
+.tag-rated-color {
+    color: #FFFFFF;
+}
+
+.rating-G {
+    background-color: #38a169; /* Green: General Audience */
+}
+
+.rating-PG {
+    background-color: #ff7a00; /* Orange: Parental Guidance */
+}
+
+.rating-MA {
+    background-color: #e50914; /* Red: Mature Audience */
+}
+
+.card-content {
+    padding: 12px 4px 0;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    height: 2.6em;
+    overflow: hidden;
+}
+
+.card-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-ep-count {
+    color: #a0a0a0;
+    padding: 2px 0;
+}
+
+/* === CONTENT ANIMATIONS === */
+@keyframes zoomIn {
+  from { transform: scale(0.95) translateY(-50%); opacity: 0; }
+  to { transform: scale(1) translateY(-50%); opacity: 1; }
+}
+
+@keyframes zoomOut {
+  from { transform: scale(1.05) translateY(-50%); opacity: 0; }
+  to { transform: scale(1) translateY(-50%); opacity: 1; }
+}
+
+.content.zoom-in { animation: zoomIn 0.4s ease-out; }
+.content.zoom-out { animation: zoomOut 0.4s ease-out; }
+
+/* POPUP POSITIONING (Grid) */
+.movie-card .movie-popup {
+  left: 108%;
+  top: 108%;
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.movie-card.is-hovered .movie-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+  transition-delay: 0.2s;
+}
+
+.movie-card.is-hovered .movie-popup.popup-position-left {
+  left: auto;
+  right: 105%;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+}
+
+.movie-card.is-hovered .movie-popup.popup-position-right {
+  left: 105%;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+}
+
+/* LATEST UPDATES PAGINATION TOOLTIP */
+.nav-arrows::before {
+    content: attr(data-page);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px) scale(0.9);
+    opacity: 0;
+    visibility: hidden;
+    background-color: #ffffff;
+    color: #0b1115;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    pointer-events: none;
+    z-index: 20;
+    margin-bottom: 12px;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-arrows::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ffffff;
+    transform: translateX(-50%) translateY(-5px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 20;
+    margin-bottom: 6px;
+    transition: all 0.25s ease;
+}
+
+.nav-arrows:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.nav-arrows:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =========================================================== */
+/* MOBILE RESPONSIVENESS FOR FILTERS */
+/* =========================================================== */
+@media (max-width: 768px) {
+    /* 1. Stack the Title on top, Controls below */
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px; /* Space between Title and Controls */
+    }
+    
+    /* 2. Container for Filters + Arrows */
+    .header-nav {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap; /* FORCE them to stay on one line */
+        gap: 10px;
+        position: relative;
+    }
+
+    /* 3. Scrollable Filter List */
+    .filters {
+        flex-grow: 1;          /* Take up all available space */
+        overflow-x: auto;      /* Allow horizontal scrolling */
+        white-space: nowrap;   /* Prevent buttons from breaking lines */
+        padding-bottom: 0;     /* Remove bottom padding */
+        padding-right: 15px;   /* Space for the fade effect */
+        width: 100%;
+        
+        /* Hide Scrollbar for cleaner look */
+        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+        
+        /* Optional: Fade effect on the right side to indicate more content */
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
+    
+    .filters::-webkit-scrollbar { 
+        display: none; /* Chrome/Safari */
+    }
+
+    /* 4. Filter Pills on Mobile */
+    .filter-pill {
+        padding: 6px 14px; /* Slightly smaller on mobile */
+        font-size: 12px;
+        flex-shrink: 0; /* Prevent buttons from being squished */
+    }
+
+    /* 5. Arrows Fixed to the Right */
+    .nav-arrows {
+        flex-shrink: 0; /* Ensures arrows never shrink or vanish */
+        margin-left: auto;
+        padding-left: 5px;
+        background-color: #0b1115; /* Matches body bg to cover scrolling items behind it */
+        z-index: 5;
+    }
+    
+    .arrow-btn {
+        width: 32px; /* Slightly larger touch target for mobile */
+        height: 32px;
+    }
+}

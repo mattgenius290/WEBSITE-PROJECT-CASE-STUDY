@@ -1,0 +1,65 @@
+/* =========================================================== */
+/* GLOBAL SETTINGS */
+/* =========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #e5e5e5;
+}
+
+body {
+  background-color: #0b1115;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* SCROLLBAR STYLE */
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e45f3a; 
+  border-radius: 10px;
+  border: 2px solid #0b0c10; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b83c19; 
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 30px 20px 30px;
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-column {
+  flex-grow: 1; 
+  min-width: 0; 
+}
+
+.discover-section {
+  position: relative;
+  z-index: 10;   
+  margin-top: -40px; 
+}
+
+/* Default: Hide bottom pagination on desktop/tablet */
+.latest-updates-footer {
+    display: none;
+    justify-content: center;
+    margin-top: 30px;
+    padding-bottom: 40px;
+}

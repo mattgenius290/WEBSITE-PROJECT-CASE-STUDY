@@ -1,0 +1,178 @@
+/* =========================================================== */
+/* CATEGORY SECTIONS (Image-only Carousel) */
+/* =========================================================== */
+
+.categories-container {
+  margin-top: 80px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.category-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 110px auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.category-section .section-header {
+    margin-bottom: 16px;
+    border-bottom: 1px solid #2a2d34;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-section .section-title {
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.category-row-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* === Left Gradient === */
+.category-row-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    background: linear-gradient(to right, #0b1115 20%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none; 
+    z-index: 15; /* Increased z-index to stay above scaled cards */
+}
+
+/* === Right Gradient === */
+.category-row-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    background: linear-gradient(to left, #0b1115 5%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none; 
+    z-index: 15; /* Increased z-index to stay above scaled cards */
+}
+
+.category-row-wrapper.has-prev-scroll::before,
+.category-row-wrapper.has-next-scroll::after {
+    opacity: 1;
+}
+
+.category-row {
+  display: flex;
+  gap: 12px; /* Adjusted to match preview feel */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  /* IMPORTANT: Added top/bottom padding so the hover scale doesn't get clipped */
+  padding: 20px 10px; 
+}
+
+.category-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- MOVIE CARD STYLES (Matched to Preview Page) --- */
+.category-row .movie-card {
+    flex: 0 0 auto; /* Ensures card doesn't shrink */
+    width: 200px;   /* Match preview card width */
+    aspect-ratio: 2 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background-color: #222;
+    border: none;
+    padding: 0;
+    /* The magic transition for the pop-up effect */
+    transition: transform 0.3s ease, z-index 0s 0.3s;
+}
+
+/* Reset inner container styles to simply fill the card */
+.category-row .movie-card .card-image-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    transition: none;
+}
+
+.category-row .movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* Hide unused elements from the template */
+.category-row .movie-card .card-content,
+.category-row .movie-card .movie-popup {
+    display: none;
+}
+
+/* --- HOVER EFFECT --- */
+.category-row .movie-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    /* Remove the old transition delay on z-index so it pops up instantly */
+    transition: transform 0.3s ease, z-index 0s; 
+}
+
+/* Remove old hover effect on inner container */
+.category-row .movie-card:hover .card-image-container {
+  transform: none;
+}
+
+/* Slider Arrows */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20; /* Ensure arrows stay on top */
+    background-color: #E0E0E0;
+    border-radius: 18px;
+    width: 35px;
+    height: 80px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.category-row-wrapper:hover .slider-arrow {
+    opacity: 1;
+}
+
+.slider-arrow:hover {
+    background-color: #CCCCCC;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.slider-arrow.prev-arrow {
+    left: 30px;
+}
+
+.slider-arrow.next-arrow {
+    right: 30px;
+}
