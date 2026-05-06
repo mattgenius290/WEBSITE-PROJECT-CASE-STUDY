@@ -1,4 +1,4 @@
-# WEBSITE-PROJECT-CASE-STUDY
+# WEBSITE-PROJECT
 A Website created to conduct a full potential creation. This Case Study Web Project aim to justify the new look, new features, and rebuild, etc...
 
 This document provides a summary of the key files used to build the MovieZone Website. 
